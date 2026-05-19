@@ -1,0 +1,53 @@
+import type { job } from "../type/job.tsx";
+
+export const sampleJobs: job[] = [
+  {
+    id: "1",
+    company: "Google",
+    position: "Frontend Developer",
+    location: "Melbourne",
+    jobType: "Full-time",
+    status: "Interview",
+    dateApplied: "2026-04-20",
+    nextStep: "Technical Interview",
+    nextStepDate: "2026-05-02",
+  },
+  {
+    id: "2",
+    company: "Canva",
+    position: "Junior Frontend Developer",
+    location: "Sydney",
+    jobType: "Graduate",
+    status: "Applied",
+    dateApplied: "2026-04-25",
+  },
+  {
+    id: "3",
+    company: "Atlassian",
+    position: "Software Engineer Intern",
+    location: "Remote",
+    jobType: "Internship",
+    status: "Rejected",
+    dateApplied: "2026-04-28",
+    nextStep: "Online Assessment",
+  },
+  {
+    id: "4",
+    company: "Microsoft",
+    position: "Web Developer",
+    location: "Melbourne",
+    jobType: "Full-time",
+    status: "Rejected",
+    dateApplied: "2026-04-10",
+  },
+  {
+    id: "5",
+    company: "Airbnb",
+    position: "Frontend Engineer",
+    location: "Sydney",
+    jobType: "Full-time",
+    status: "Offer",
+    dateApplied: "2026-04-05",
+    nextStep: "Review Offer",
+  },
+];

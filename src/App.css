@@ -1,0 +1,6 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%; /* 必须设置，否则子元素百分比高度无效 */
+    width: 100%;
+}
