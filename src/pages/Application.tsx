@@ -60,71 +60,45 @@ function Application() {
 
   
   return(<>
-  <div>
+  <div className="space-y-6">
   
-    <button onClick={handleAddClick} style={{
-      background:"#2563eb",
-      color:"white",
-      border:"none",
-      padding:"10px 16px",
-      borderRadius:"8px"
-    }}>ADD APPLICATION</button>
+    <button onClick={handleAddClick} className="rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700">ADD APPLICATION</button>
   </div>
   
   <div>
     <input placeholder="Search company,position or location..." value={search}
-    onChange={(e)=>setSearch(e.target.value)} style={{
-      flex:1, 
-      padding:"10px 12px",
-      borderRadius:"8px",
-      border:"1px solid #d1d5db",
-      width:"50%"
-    }}></input>
+    onChange={(e)=>setSearch(e.target.value)} 
+    className="flex-1 rounded-xl border border-slate-300 px-4 py-2.5 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20"></input>
 
-    <select value={statusFilter} onChange={(e)=>setStatusFilter(e.target.value as "ALL" | jobStatus)} style={{
-      padding:"10px 12px",
-      borderRadius:"8px",
-      border:"1px solid #d1d5db",
-      width:"150px",
-      marginLeft:"10px"
-    }}>
+    <select value={statusFilter} onChange={(e)=>setStatusFilter(e.target.value as "ALL" | jobStatus)} className="rounded-xl border border-slate-300 px-4 py-2.5 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20">
       {statusOptions.map((option)=><option key={option} value={option}>{option}</option>)}
       </select>
 
-      <select value={sortOrder} onChange={(e)=>setSortOrder(e.target.value as "date" | "company")} style={{
-      padding:"10px 12px",
-      borderRadius:"8px",
-      border:"1px solid #d1d5db",
-      width:"150px",
-      marginLeft:"10px"
-    }}>
+      <select value={sortOrder} onChange={(e)=>setSortOrder(e.target.value as "date" | "company")} 
+        className="rounded-xl border border-slate-300 px-4 py-2.5 text-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20">
       <option value="newest">Newest</option>
-      <option value="newest">Oldest</option>
-      <option value="newest">Company</option>
+      <option value="oldest">Oldest</option>
+      <option value="company">Company</option>
     </select>
   </div>
 
-  <div>
-    <table style={{width:"100%",borderCollapse:"collapse"}}>
-      <thead>
-        <tr style={{textAlign:"center",color:"#6b7280"}}>
-          <th style={{ padding: "12px" }}>Company</th>
-            <th style={{ padding: "12px" }}>Position</th>
-            <th style={{ padding: "12px" }}>Location</th>
-            <th style={{ padding: "12px" }}>Status</th>
-            <th style={{ padding: "12px" }}>Date Applied</th>
-            <th style={{ padding: "12px" }}>Next Step</th>
+  <div className="overflow-hidden rounded-xl border border-slate-200">
+    <table className="w-full border-collapse text-sm">
+      <thead className="bg-slate-50 text-left text-slate-500">
+        <tr>
+          <th className="px-4 py-3 font-medium">Company</th>
+            <th className="px-4 py-3 font-medium">Position</th>
+            <th className="px-4 py-3 font-medium">Location</th>
+            <th className="px-4 py-3 font-medium">Status</th>
+            <th className="px-4 py-3 font-medium">Date Applied</th>
+            <th className="px-4 py-3 font-medium">Next Step</th>
         </tr>
       </thead>
-      <tbody>
+      <tbody className="divide-y divide-slate-200">
         
           {filteredJobs.length === 0 ? (
             <tr>
-              <td colSpan={7} style={{
-                padding:"40px",
-                textAlign:"center",
-                color:"#6b7280"
-              }}>
+              <td colSpan={7} className="px-4 py-12 text-center text-slate-500">
                 No jobs found.
               </td>
             </tr>
@@ -132,17 +106,17 @@ function Application() {
            :
           
           (filteredJobs.map((job)=>(
-            <tr style={{
-              borderTop:"1px solid #e5e7eb"
-            }}>
-              <td style={{padding:"12px"}}>{job.company}</td>
-              <td style={{padding:"12px"}}>{job.position}</td>
-              <td style={{padding:"12px"}}>{job.location}</td>
-              <td style={{padding:"12px"}}><StatusBadge status={job.status}/></td>
-              <td style={{padding:"12px"}}>{job.dateApplied}</td>
-              <td style={{padding:"12px"}}>{job.nextStep || "-"}</td>
-              <button onClick={()=>handleDelete(job)}>Delete</button>
-              <button onClick={()=>handleEdit(job)}>Edit</button>
+            <tr className="transition hover:bg-slate-50">
+              <td className="px-4 py-3 font-semibold text-slate-900">{job.company}</td>
+              <td className="px-4 py-3 text-slate-600">{job.position}</td>
+              <td className="px-4 py-3 text-slate-600">{job.location}</td>
+              <td className="px-4 py-3"><StatusBadge status={job.status}/></td>
+              <td className="px-4 py-3 text-slate-600">{job.dateApplied}</td>
+              <td className="px-4 py-3 text-slate-600">{job.nextStep || "-"}</td>
+              <button onClick={()=>handleDelete(job)}
+                className="rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-medium text-slate-700 transition hover:bg-slate-100">Delete</button>
+              <button onClick={()=>handleEdit(job)} 
+                className="rounded-lg border border-rose-200 px-3 py-1.5 text-xs font-medium text-rose-600 transition hover:bg-rose-50">Edit</button>
             </tr>
           ))
         )}

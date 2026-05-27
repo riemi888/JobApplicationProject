@@ -15,18 +15,12 @@ function MainLayout(){
     useEffect(()=>{
         saveJobs(jobs);
     },[jobs])
-    return(<div style={
-        {display:"flex",
-        minHeight:"100vh",
-        backgroundColor:"rgba(118, 165, 199, 0.5)",
-        }
-    }>
+    return(<div className="flex min-h-screen bg-slate-50"
+    >
         <Sidebar></Sidebar>
-        <div style={{flex:1}}>
+        <div className="flex-1">
             <Navbar></Navbar>
-            <main style={
-                {padding:"24px"}
-            }>
+            <main className="p-6">
                 <Outlet context={{jobs,setJobs}}></Outlet>
             </main>
             

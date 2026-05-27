@@ -1,24 +1,21 @@
+type StatCardProps = {
+  title: string;
+  value: number;
+  description?: string;
+};
 
-type StartCardProps = {
-    title:string,
-    description?:string,
-    value:number
+function StatCard({ title, value, description }: StatCardProps) {
+  return (
+    <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:-translate-y-1 hover:shadow-md">
+      <p className="text-sm font-medium text-slate-500">{title}</p>
+
+      <h2 className="mt-3 text-3xl font-bold text-slate-900">{value}</h2>
+
+      {description && (
+        <p className="mt-2 text-sm text-emerald-600">{description}</p>
+      )}
+    </div>
+  );
 }
 
-function StartCard({title,description,value}:StartCardProps){
-    return(
-        <div style={{
-            background:"white",
-            borderRadius:"16px",
-            padding:"20px",
-            border:"1px solid #e5e7eb"
-        }}>
-            <p style={{fontSize:"20px",fontWeight:"bold",margin:0}}>{title}</p>
-            <h2 style={{fontSize:"24px",fontWeight:"bold",margin:"12px 0 4px"}}>{value}</h2>
-            {description && <p style={{fontSize:"16px",margin:0,color:"#10b981"}}>{description}</p>}
-            
-        </div>
-    )
-}
-
-export default StartCard
+export default StatCard;

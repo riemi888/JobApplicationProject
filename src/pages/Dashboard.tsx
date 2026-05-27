@@ -1,5 +1,6 @@
 import {useJob} from "../hooks/useJob"
 import StartCard from "../component/StartCard"
+import StatusBadge from "../component/StatusBadge";
 
 function Dashboard() {
   const {jobs} = useJob();
@@ -11,10 +12,8 @@ function Dashboard() {
 
 
   return(<>
-  <p style={{color:"#6b7280",margin:"12px",fontSize:"16px",fontWeight:"500"}}>Welcome back! Here is your job search overview!!</p>
-  <div style={{display:"grid",gridTemplateColumns:"repeat(5,1fr)",gap:"4px",marginBottom:"24px",
-    padding:"0 4px"
-  }}>
+  <p className="mt-1 text-slate-500">Welcome back! Here is your job search overview!!</p>
+  <div className="grid gap-4 grid-cols-5">
     <StartCard title="Total Applications" value={total}></StartCard>
     <StartCard title="Applied" value={applied}></StartCard>
     <StartCard title="Interview" value={interview}></StartCard>
@@ -23,33 +22,28 @@ function Dashboard() {
 
   </div>
 
-  <div style={{background:"white",borderRadius:"16px",padding:"20px",
-    border:"1px solid #e5e7eb",margin:"20px"
-  }}>
+  <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
     <h2>Recent Application</h2>
 
-    <table style={{
-      width:"100%",
-      borderCollapse:"collapse"
-    }}>
-      <thead>
-        <tr style={{textAlign:"center",color:"#6b7280"}}>
-          <th style={{padding:"12px"}}>Company</th>
-          <th style={{padding:"12px"}}>Position</th>
-          <th style={{padding:"12px"}}>Status</th>
-          <th style={{padding:"12px"}}>Applied On</th>
-          <th style={{padding:"12px"}}>Actions</th>
+    <table className="w-full border-collapse text-sm">
+      <thead className="bg-slate-50 text-left text-slate-500">
+        <tr>
+          <th className="px-4 py-3 font-medium">Company</th>
+          <th className="px-4 py-3 font-medium">Position</th>
+          <th className="px-4 py-3 font-medium">Status</th>
+          <th className="px-4 py-3 font-medium">Applied On</th>
+          <th className="px-4 py-3 font-medium">Actions</th>
         </tr>
       </thead>
       <tbody>
         {jobs.map((job)=>(
-          <tr>
-            <td style={{padding:"12px"}}>{job.company}</td>
-            <td style={{padding:"12px"}}>{job.position}</td>
-            <td style={{padding:"12px"}}>{job.status}</td>
-            <td style={{padding:"12px"}}>{job.location}</td>
-            <td style={{padding:"12px"}}>{job.dateApplied}</td>
-            <td style={{padding:"12px"}}>{job.nextStep || "-"}</td>
+          <tr key={job.id} className="hover:bg-slate-50">
+            <td className="px-4 py-3 font-medium text-slate-900">{job.company}</td>
+            <td className="px-4 py-3 text-slate-600">{job.position}</td>
+            <td className="px-4 py-3"><StatusBadge status={job.status} /></td>
+            <td className="px-4 py-3 text-slate-600">{job.location}</td>
+            <td className="px-4 py-3 text-slate-600">{job.dateApplied}</td>
+            <td className="px-4 py-3 text-slate-600">{job.nextStep || "-"}</td>
             
           </tr>
           
