@@ -5,7 +5,6 @@ import {
   LayoutDashboard,
   Briefcase,
   KanbanSquare,
-  CheckSquare,
 } from "lucide-react";
 
 
