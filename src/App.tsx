@@ -6,12 +6,16 @@ import Dashboard from "./pages/Dashboard"
 import Login from "./pages/Login";
 import Application from "./pages/Application";
 import Board from "./pages/Board";
+import ProtectedRoute from "./component/ProtectedRoute";
 
 function App() {
   return(
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<MainLayout />}>
+        <Route path="/" element={
+          <ProtectedRoute>
+            <MainLayout />
+          </ProtectedRoute>}>
           <Route index element={<Dashboard />} />
           <Route path="application" element={<Application />} />
           <Route path="board" element={<Board />} />
