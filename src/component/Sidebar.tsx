@@ -1,10 +1,13 @@
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { logout } from "../utils/auth";
 
 import {
   LayoutDashboard,
   Briefcase,
   KanbanSquare,
+  CheckSquare,
 } from "lucide-react";
+
 
 const navItems = [
   {
@@ -18,7 +21,7 @@ const navItems = [
     icon: Briefcase,
   },
   {
-    label: "Board",
+    label: "Board",        
     path: "/board",
     icon: KanbanSquare,
   },
@@ -26,6 +29,13 @@ const navItems = [
 
 function Sidebar() {
   const location = useLocation();
+
+  const navigate = useNavigate();
+
+  function handleLogout() {
+    logout();
+    navigate("/login");
+  }
 
   return (
     <aside className="w-64 bg-slate-900 text-white p-6 flex flex-col">
@@ -67,11 +77,18 @@ function Sidebar() {
         })}
       </nav>
 
-      <div className="mt-auto pt-6 border-t border-slate-800">
-        <div className="text-sm text-slate-400">
-          Built with React + Tailwind
-        </div>
-      </div>
+      <div className="mt-auto border-t border-slate-800 pt-6">
+  <button
+    onClick={handleLogout}
+    className="w-full rounded-xl px-4 py-3 text-left text-sm text-slate-300 transition hover:bg-slate-800 hover:text-white"
+  >
+    Logout
+  </button>
+
+  <div className="mt-4 text-xs text-slate-500">
+    Built with React + Tailwind
+  </div>
+</div>
     </aside>
   );
 }
